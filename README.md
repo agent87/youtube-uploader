@@ -8,8 +8,8 @@ Youtube uploader is python 2 script that will upload your machine learning outpu
 google colab to youtube using Youtube API V3
 
 # pre-requisities
-Youtube Developer account
-Youtube API V3 Enabled
-Client ID/Secret Key
+Youtube Developer account\
+Youtube API V3 Enabled\
+Client ID/Secret Key\
 
 #The script shall automatically install all the dependencies 
