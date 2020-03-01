@@ -4,4 +4,3 @@ os.system('sudo apt-get install python-pip')
 os.system('pip2 install --upgrade google-api-python-client')
 os.system('pip2 install --upgrade google-auth-oauthlib google-auth-httplib2')
 
-creds = input('Please input path to user credentials')
