@@ -42,8 +42,8 @@ RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 #   https://developers.google.com/youtube/v3/guides/authentication
 # For more information about the client_secrets.json file format, see:
 #   https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
-CLIENT_SECRETS_FILE = raw_input('Creds path:')
-MEDIA_FILE_PATH = raw_input('Video Path:')
+CLIENT_SECRETS_FILE = raw_input('Enter your client credential secret file path:\n')
+MEDIA_FILE_PATH = raw_input('Enter the path of the video you wish to upload:\n')
 
 # This OAuth 2.0 access scope allows an application to upload files to the
 # authenticated user's YouTube channel, but doesn't allow other types of access.
