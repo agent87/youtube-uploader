@@ -10,6 +10,12 @@ google colab to youtube using Youtube API V3
 # pre-requisities
 Youtube Developer account\
 Youtube API V3 Enabled\
-Client ID/Secret Key\
+Client ID/Secret Key
 
 #The script shall automatically install all the dependencies 
+
+#Running from Live Notebook in Google Colab
+!git clone https://github.com/agent87/youtube_uploader.git
+!cd youtube_uploader
+!python youtube_uploader/setup.py
+!python2 youtube_uploader/upload.py
