@@ -42,7 +42,8 @@ RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 #   https://developers.google.com/youtube/v3/guides/authentication
 # For more information about the client_secrets.json file format, see:
 #   https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
-CLIENT_SECRETS_FILE = 'client_secret.json'
+CLIENT_SECRETS_FILE = raw_input('Creds path:')
+MEDIA_FILE_PATH = raw_input('Video Path:')
 
 # This OAuth 2.0 access scope allows an application to upload files to the
 # authenticated user's YouTube channel, but doesn't allow other types of access.
@@ -91,7 +92,7 @@ def initialize_upload(youtube, options):
     # practice, but if you're using Python older than 2.6 or if you're
     # running on App Engine, you should set the chunksize to something like
     # 1024 * 1024 (1 megabyte).
-    media_body=MediaFileUpload(options.file, chunksize=-1, resumable=True)
+    media_body=MediaFileUpload(MEDIA_FILE_PATH, chunksize=-1, resumable=True)
   )
 
   resumable_upload(insert_request)
@@ -133,7 +134,7 @@ def resumable_upload(request):
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
-  parser.add_argument('--file', required=True, help='Video file to upload')
+  parser.add_argument('--file', required=False, help='Video file to upload')
   parser.add_argument('--title', help='Video title', default='Test Title')
   parser.add_argument('--description', help='Video description',
     default='Test Description')
