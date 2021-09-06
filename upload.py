@@ -104,23 +104,25 @@ def resumable_upload(request):
 
 if __name__ == '__main__':
   youtube = get_authenticated_service()
-  parser = argparse.ArgumentParser()
-  parser.add_argument('--file', required=False, help='Video file to upload')
-  parser.add_argument('--title', help='Video title', default='Test Title')
-  parser.add_argument('--description', help='Video description', default='Test Description')
-  parser.add_argument('--category', default='22', help='Numeric video category. ' + 'See https://developers.google.com/youtube/v3/docs/videoCategories/list')
-  parser.add_argument('--keywords', help='Video keywords, comma separated', default='')
-  parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES, default='private', help='Video privacy status.')
-  args = parser.parse_args()
+
   MEDIA_FOLDER_PATH = raw_input('Enter VIDEOS FOLDER PATH you wish to upload:\n')
   for video_file in glob.glob(os.path.join(MEDIA_FOLDER_PATH, '*.*')):
     mimetypes.init()
     mimestart = mimetypes.guess_type(video_file)[0]
     if mimestart != None:
-        mimestart = mimestart.split('/')[0]
-        if mimestart == 'video':
-            try:
-              initialize_upload(youtube, args, video_file)
-            except HttpError, e:
-              print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
+      mimestart = mimestart.split('/')[0]
+      if mimestart == 'video':
+        title = description = video-file.split()[-1]
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--file', required=False, help='Video file to upload')
+        parser.add_argument('--title', help='Video title', default=title)
+        parser.add_argument('--description', help='Video description', default=description)
+        parser.add_argument('--category', default='22', help='Numeric video category. ' + 'See https://developers.google.com/youtube/v3/docs/videoCategories/list')
+        parser.add_argument('--keywords', help='Video keywords, comma separated', default='')
+        parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES, default='private', help='Video privacy status.')
+        args = parser.parse_args()
+        try:
+          initialize_upload(youtube, args, video_file)
+          except HttpError, e:
+            print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
               
