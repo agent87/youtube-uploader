@@ -112,7 +112,7 @@ if __name__ == '__main__':
     if mimestart != None:
       mimestart = mimestart.split('/')[0]
       if mimestart == 'video':
-        title = description = video-file.split()[-1]
+        title = description = video_file.split()[-1]
         parser = argparse.ArgumentParser()
         parser.add_argument('--file', required=False, help='Video file to upload')
         parser.add_argument('--title', help='Video title', default=title)
