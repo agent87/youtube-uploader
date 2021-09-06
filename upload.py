@@ -123,6 +123,6 @@ if __name__ == '__main__':
         args = parser.parse_args()
         try:
           initialize_upload(youtube, args, video_file)
-          except HttpError, e:
-            print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
+        except HttpError, e:
+          print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
               
