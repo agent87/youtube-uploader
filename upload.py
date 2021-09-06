@@ -6,6 +6,7 @@ import httplib2
 import os
 import random
 import time
+import glob, mimetypes
 
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
@@ -42,8 +43,7 @@ def get_authenticated_service():
   credentials = flow.run_console()
   return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
 
-def initialize_upload(youtube, options):
-  MEDIA_FILE_PATH = raw_input('Enter the path of the video you wish to upload:\n')
+def initialize_upload(youtube, options, MEDIA_FILE_PATH):
   tags = None
   if options.keywords:
     tags = options.keywords.split(',')
@@ -104,24 +104,23 @@ def resumable_upload(request):
 
 if __name__ == '__main__':
   youtube = get_authenticated_service()
-  x = 'y'
-  while(x in {'y', 'Y'}):
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--file', required=False, help='Video file to upload')
-    parser.add_argument('--title', help='Video title', default='Test Title')
-    parser.add_argument('--description', help='Video description',
-      default='Test Description')
-    parser.add_argument('--category', default='22',
-      help='Numeric video category. ' +
-        'See https://developers.google.com/youtube/v3/docs/videoCategories/list')
-    parser.add_argument('--keywords', help='Video keywords, comma separated',
-      default='')
-    parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES,
-      default='private', help='Video privacy status.')
-    args = parser.parse_args()
-    try:
-      initialize_upload(youtube, args)
-    except HttpError, e:
-      print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
-      
-    x = raw_input('Enter "y/Y" to upload more, "n/N" to stop:\n')
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--file', required=False, help='Video file to upload')
+  parser.add_argument('--title', help='Video title', default='Test Title')
+  parser.add_argument('--description', help='Video description', default='Test Description')
+  parser.add_argument('--category', default='22', help='Numeric video category. ' + 'See https://developers.google.com/youtube/v3/docs/videoCategories/list')
+  parser.add_argument('--keywords', help='Video keywords, comma separated', default='')
+  parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES, default='private', help='Video privacy status.')
+  args = parser.parse_args()
+  MEDIA_FOLDER_PATH = raw_input('Enter VIDEOS FOLDER PATH you wish to upload:\n')
+  for video_file in glob.glob(os.path.join(MEDIA_FOLDER_PATH, '*.*')):
+    mimetypes.init()
+    mimestart = mimetypes.guess_type(video_file)[0]
+    if mimestart != None:
+        mimestart = mimestart.split('/')[0]
+        if mimestart == 'video':
+            try:
+              initialize_upload(youtube, args, video_file)
+            except HttpError, e:
+              print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
+              
