@@ -27,9 +27,7 @@ RETRIABLE_EXCEPTIONS = (httplib2.HttpLib2Error, IOError, httplib.NotConnected,
 
 RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 
-
-#CLIENT_SECRETS_FILE = raw_input('Enter your client credential secret file path:\n')
-MEDIA_FILE_PATH = raw_input('Enter the path of the video you wish to upload:\n')
+CLIENT_SECRETS_FILE = raw_input('Enter your client credential secret file path:\n')
 
 SCOPES = ['https://www.googleapis.com/auth/youtube.upload']
 API_SERVICE_NAME = 'youtube'
@@ -45,6 +43,7 @@ def get_authenticated_service():
   return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
 
 def initialize_upload(youtube, options):
+  MEDIA_FILE_PATH = raw_input('Enter the path of the video you wish to upload:\n')
   tags = None
   if options.keywords:
     tags = options.keywords.split(',')
@@ -104,23 +103,25 @@ def resumable_upload(request):
       time.sleep(sleep_seconds)
 
 if __name__ == '__main__':
-  parser = argparse.ArgumentParser()
-  parser.add_argument('--file', required=False, help='Video file to upload')
-  parser.add_argument('--title', help='Video title', default='Test Title')
-  parser.add_argument('--description', help='Video description',
-    default='Test Description')
-  parser.add_argument('--category', default='22',
-    help='Numeric video category. ' +
-      'See https://developers.google.com/youtube/v3/docs/videoCategories/list')
-  parser.add_argument('--keywords', help='Video keywords, comma separated',
-    default='')
-  parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES,
-    default='private', help='Video privacy status.')
-  args = parser.parse_args()
-
-  #youtube = get_authenticated_service()
-
-  try:
-    initialize_upload(youtube, args)
-  except HttpError, e:
-    print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
+  youtube = get_authenticated_service()
+  x = 'y'
+  while(x in {'y', 'Y'}):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--file', required=False, help='Video file to upload')
+    parser.add_argument('--title', help='Video title', default='Test Title')
+    parser.add_argument('--description', help='Video description',
+      default='Test Description')
+    parser.add_argument('--category', default='22',
+      help='Numeric video category. ' +
+        'See https://developers.google.com/youtube/v3/docs/videoCategories/list')
+    parser.add_argument('--keywords', help='Video keywords, comma separated',
+      default='')
+    parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES,
+      default='private', help='Video privacy status.')
+    args = parser.parse_args()
+    try:
+      initialize_upload(youtube, args)
+    except HttpError, e:
+      print 'An HTTP error %d occurred:\n%s' % (e.resp.status, e.content)
+      
+    x = raw_input('Enter "y/Y" to upload more, "n/N" to stop:\n')
