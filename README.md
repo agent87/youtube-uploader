@@ -15,6 +15,9 @@ from any cloud drive to youtube )
 Youtube Developer account/console:- \
 <a href="https://console.developers.google.com"> Click-Here </a>
 
+0. Error 403 access denied OAuth (Google Drive API & YouTube Data API error):- \
+<a href="https://www.youtube.com/watch?v=-XywEY2PGIY"> Video Guide </a>
+
 1. Create & Download Credentials.json file in Google Cloud Platform:- \
 <a href="https://www.youtube.com/watch?v=6MBLrH1j6Tg"> Video Guide </a>
 
