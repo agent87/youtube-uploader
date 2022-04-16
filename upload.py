@@ -119,7 +119,7 @@ if __name__ == '__main__':
         parser.add_argument('--description', help='Video description', default=description)
         parser.add_argument('--category', default='22', help='Numeric video category. ' + 'See https://developers.google.com/youtube/v3/docs/videoCategories/list')
         parser.add_argument('--keywords', help='Video keywords, comma separated', default='')
-        parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES, default='private', help='Video privacy status.')
+        parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES, default='unlisted', help='Video privacy status.')
         args = parser.parse_args()
         try:
           initialize_upload(youtube, args, video_file)
