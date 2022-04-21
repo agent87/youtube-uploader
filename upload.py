@@ -115,7 +115,7 @@ if __name__ == '__main__':
   parser.add_argument('--keywords', help='Video keywords, comma separated',
     default='')
   parser.add_argument('--privacyStatus', choices=VALID_PRIVACY_STATUSES,
-    default='private', help='Video privacy status.')
+    default='unlisted', help='Video privacy status.')
   args = parser.parse_args()
 
   youtube = get_authenticated_service()
