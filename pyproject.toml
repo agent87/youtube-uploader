@@ -6,6 +6,10 @@ authors = ["Arnaud Kayonga <arnauldkayonga1@gmail.com>"]
 license = "MIT-License"
 readme = "README.md"
 
+packages = [
+    { include = "src" }
+    ]
+
 [tool.poetry.dependencies]
 python = "^3.11"
 google = "^3.0.0"

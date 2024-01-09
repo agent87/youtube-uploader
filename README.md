@@ -1,8 +1,10 @@
-YouTube Uploader CLI Tool
-Overview
+# YouTube Uploader CLI Tool
+
+## Overview
+
 The YouTube Uploader is a Python 2 script designed to simplify the process of uploading machine learning model output videos, particularly those generated in Google Colab, directly to YouTube using the YouTube API v3. This tool aims to streamline data-heavy operations, such as sharing computer vision project results.
 
-Prerequisites
+## Prerequisites
 Before using the uploader, ensure the following prerequisites are met:
 
 YouTube Developer Account/Console: Create an account and set up a project at YouTube Developer Console.
@@ -11,10 +13,10 @@ YouTube API v3 Enabled: Enable the YouTube API v3 for your project in the Develo
 
 Client ID/Secret Key: Generate a Client ID and Secret Key for authentication.
 
-Dependencies
+## Dependencies
 The script will automatically install the required dependencies. No manual installation is needed.
 
-Usage
+## Usage
 To run the script from a live notebook in Google Colab, follow these steps:
 
 ```python
@@ -31,13 +33,13 @@ To run the script from a live notebook in Google Colab, follow these steps:
 !python2 youtube_uploader/upload.py
 ```
 
-Important Note
+## Important Note
 Replace your_email@gmail.com with your actual Gmail address associated with the YouTube Developer Console when prompted by the script.
 
-Contribution
+## Contribution
 Contributions are welcome! Feel free to submit issues or pull requests.
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Happy uploading with YouTube Uploader!
