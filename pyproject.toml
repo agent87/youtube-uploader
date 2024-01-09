@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "youtube-uploader"
+version = "1.0.1"
+description = "A Youtube Uploader CLI using the official youtube api."
+authors = ["Arnaud Kayonga <arnauldkayonga1@gmail.com>"]
+license = "MIT-License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+google = "^3.0.0"
+httplib2 = "^0.22.0"
+uritemplate = "^4.1.1"
+google-auth-httplib2 = "^0.2.0"
+google-auth-oauthlib = "^1.2.0"
+google-api-python-client = "^2.112.0"
+
+[tool.poetry.group.dev.dependencies]
+py-spy = "^0.3.14"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
