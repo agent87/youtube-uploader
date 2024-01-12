@@ -30,7 +30,7 @@ To run the script from a live notebook in Google Colab, follow these steps:
 !python youtube_uploader/setup.py
 
 # Run the uploader script
-!python2 youtube_uploader/upload.py
+!python youtube_uploader/upload.py
 ```
 
 ## Important Note
